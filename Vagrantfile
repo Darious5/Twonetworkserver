@@ -15,6 +15,8 @@ Vagrant.configure("2") do |config|
     dhcp.vm.network "private_network", ip: "192.168.20.1", virtualbox__intnet: "intnet2"
     dhcp.vm.provision "shell", inline: <<-SHELL
       sudo apt-get install -y isc-dhcp-server
+      cp /vagrant/configs/dhcpd.conf /etc/dhcp/dhcpd.conf
+      cp /vagrant/configs/isc-dhcp-server /etc/default/isc-dhcp-server
       sudo systemctl restart isc-dhcp-server
     SHELL
   end
